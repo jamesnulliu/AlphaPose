@@ -189,7 +189,7 @@ def get_install_requires():
         "munkres",
         "timm==0.1.20",
         "natsort",
-        "rumel.yaml",
+        "ruamel.yaml",
     ]
     # official pycocotools doesn't support Windows, we will install it by third-party git repository later
     if platform.system() != "Windows":
