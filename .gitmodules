@@ -1,0 +1,3 @@
+[submodule "vendor/HalpeCOCOAPI"]
+	path = vendor/HalpeCOCOAPI
+	url = git@github.com:HaoyiZhu/HalpeCOCOAPI.git
