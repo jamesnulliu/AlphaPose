@@ -1,16 +1,27 @@
 # -----------------------------------------------------
 # Copyright (c) Shanghai Jiao Tong University. All rights reserved.
 # Written by Chao Xu (xuchao.19962007@sjtu.edu.cn)
+#
+# 
+# Modified by Yanchen Liu (jamesnulliu@gmail.com)
 # -----------------------------------------------------
 
 """API of detector"""
 from abc import ABC, abstractmethod
+from ruamel.yaml import YAML
+from easydict import EasyDict as edict
 
 
 def get_detector(opt=None):
     if opt.detector == 'yolo':
         from detector.yolo_api import YOLODetector
-        from detector.yolo_cfg import cfg
+        # @author jamesnulliu >>>>>>
+        if opt.detector_cfg is None:
+            from detector.yolo_cfg import cfg
+        else:
+            cfg = YAML().load(open(opt.detector_cfg, 'r'))
+            cfg = edict(cfg)
+        # @author jamesnulliu <<<<<<
         return YOLODetector(cfg, opt)
     elif 'yolox' in opt.detector:
         from detector.yolox_api import YOLOXDetector
